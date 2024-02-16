@@ -33,6 +33,7 @@ def auth_register():
         db.session.commit()
         # Respond back to client
         return user_schema.dump(user), 201
+
     except IntegrityError as err:
         if err.orig.pgcode == errorcodes.UNIQUE_VIOLATION:
             return {"error": "Email address is already in use"}, 409
