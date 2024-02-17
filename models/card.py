@@ -24,7 +24,7 @@ class Card(db.Model):
 class CardSchema(ma.Schema):
     user = fields.Nested("UserSchema", only=["name", "email"])
 
-    class meta:
+    class Meta:
         fields = (
             "id",
             "title",
@@ -34,6 +34,7 @@ class CardSchema(ma.Schema):
             "priority",
             "user",
         )
+        ordered = True
 
 
 card_schema = CardSchema()
