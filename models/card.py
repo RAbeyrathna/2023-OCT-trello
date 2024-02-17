@@ -13,7 +13,7 @@ class Card(db.Model):
     priority = db.Column(db.String)
 
     user_id = db.Column(
-        db.Integer, db.foreign_key("users.id", nullable=False)
+        db.Integer, db.ForeignKey("users.id"), nullable=False
     )  # Postgres = 'users' __tablename__
 
     user = db.relationship(
