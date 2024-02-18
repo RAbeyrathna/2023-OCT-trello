@@ -20,9 +20,12 @@ class Card(db.Model):
         "User", back_populates="cards"
     )  # SQLAlchemy = 'User' model
 
+    comments = db.relationship("Comment", back_populates="card")
+
 
 class CardSchema(ma.Schema):
     user = fields.Nested("UserSchema", only=["name", "email"])
+    comments = fields.List(fields.Nested("CommentSchema", exclude=["card"]))
 
     class Meta:
         fields = (
@@ -33,6 +36,7 @@ class CardSchema(ma.Schema):
             "status",
             "priority",
             "user",
+            "comments",
         )
         ordered = True
 
