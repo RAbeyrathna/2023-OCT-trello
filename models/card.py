@@ -20,7 +20,9 @@ class Card(db.Model):
         "User", back_populates="cards"
     )  # SQLAlchemy = 'User' model
 
-    comments = db.relationship("Comment", back_populates="card")
+    comments = db.relationship(
+        "Comment", back_populates="card", cascade="all, delete"
+    )
 
 
 class CardSchema(ma.Schema):
